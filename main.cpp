@@ -241,7 +241,7 @@ void show(rightSide& rightSide,const int& mistakes, bool& alive, bool win, strin
                  << rightSide.message << endl << endl
                  << "Game over! The word was: " + word + ".";
             cout.flush();
-                std::this_thread::sleep_for(std::chrono::seconds(3));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             cout << endl << endl << endl << endl << endl << endl;
             alive = false;
             break;
@@ -312,9 +312,8 @@ bool game(rightSide& rightSide, short int& mistakes, bool& alive, string& word, 
         }
         if (win)
             return true;
-        if (alive == false)
-            return false;
     }
+    return false;
 }
 
 bool startGame(rightSide& rightSide, short int& mistakes, bool& alive, string& word, bool& win){
@@ -330,6 +329,7 @@ bool startGame(rightSide& rightSide, short int& mistakes, bool& alive, string& w
     rightSide.message2 = "";
     getRandomWord(rightSide, word);
     bool hasWon = game(rightSide,mistakes,alive,word,win);
+    return hasWon;
 }
 
 void checkIfGameIsWon(const bool& hasWon, unsigned short int& wins, unsigned short int& loses){
